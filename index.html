@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Favicons | Weblocal Studio</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+<body>
+
+    <header>
+        <h1>Generador de Favicons</h1>
+        <p>Crea todos los tamaños y el manifest listos para tu web corporativa</p>
+    </header>
+
+    <div class="container">
+        <div class="panel">
+            <div class="tabs">
+                <button class="tab-btn active" id="tabTexto" onclick="cambiarModo('texto')">Texto</button>
+                <button class="tab-btn" id="tabImagen" onclick="cambiarModo('imagen')">Imagen</button>
+            </div>
+
+            <div id="controlesTexto">
+                <div class="control-group">
+                    <label for="inputText">Texto del Favicon</label>
+                    <input type="text" id="inputText" value="WLS" oninput="actualizarFavicon()">
+                </div>
+                <div class="control-group">
+                    <label for="inputFont">Tipografía</label>
+                    <select id="inputFont" onchange="actualizarFavicon()">
+                        <option value="Arial">Arial</option>
+                        <option value="Montserrat, sans-serif">Montserrat</option>
+                        <option value="Courier New">Courier New</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Impact">Impact</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label for="inputFontSize">Tamaño Máximo del Texto (%)</label>
+                    <input type="range" id="inputFontSize" min="30" max="95" value="75" oninput="actualizarFavicon()">
+                </div>
+                <div class="color-pickers control-group">
+                    <div class="color-field">
+                        <label for="colorText">Color Texto</label>
+                        <input type="color" id="colorText" value="#ffffff" onchange="actualizarFavicon()">
+                    </div>
+                    <div class="color-field">
+                        <label for="colorBg">Color Fondo</label>
+                        <input type="color" id="colorBg" value="#0076ff" onchange="actualizarFavicon()">
+                    </div>
+                </div>
+            </div>
+
+            <div id="controlesImagen" class="hidden">
+                <div class="control-group">
+                    <label for="inputImgFile">Subir Imagen</label>
+                    <input type="file" id="inputImgFile" accept="image/*" onchange="cargarImagen(event)">
+                </div>
+                <div class="control-group">
+                    <label>
+                        <input type="checkbox" id="checkQuitarFondo" onchange="actualizarFavicon()"> Quitar fondo blanco puro
+                    </label>
+                </div>
+                <div class="control-group">
+                    <label for="colorBgImg">Color de Fondo Trasero (Opcional)</label>
+                    <input type="color" id="colorBgImg" value="#ffffff" onchange="actualizarFavicon()">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label for="inputRadius">Redondear esquinas (Radio px)</label>
+                <input type="range" id="inputRadius" min="0" max="256" value="64" oninput="actualizarFavicon()">
+            </div>
+        </div>
+
+        <div class="panel panel-preview">
+            <div>
+                <h3>Previsualización (512x512)</h3>
+                <div class="preview-box">
+                    <canvas id="previewCanvas" width="512" height="512"></canvas>
+                </div>
+
+                <button class="btn-generate" onclick="descargarFavicons()">Generar y Descargar Favicon Kit</button>
+            </div>
+
+            <div class="code-output">
+                <div class="code-header">
+                    <label>Código HTML para tu &lt;head&gt;:</label>
+                    <button class="btn-copy" onclick="copiarCodigo()">Copiar código</button>
+                </div>
+                <pre><code id="htmlCode">&lt;link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"&gt;
+&lt;link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"&gt;
+&lt;link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"&gt;
+&lt;link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"&gt;
+&lt;link rel="manifest" href="/site.webmanifest"&gt;</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        Desarrollado por <a href="https://weblocalstudio.es" target="_blank">Weblocal Studio</a>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
