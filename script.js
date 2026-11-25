@@ -175,7 +175,7 @@ async function descargarFavicons() {
     });
 
     const manifestContent = {
-        "name": "Weblocal Studio Favicon Kit",
+        "name": "Web Realiza Favicon Kit",
         "short_name": "WLS Favicon",
         "icons": [
             {
@@ -199,7 +199,7 @@ async function descargarFavicons() {
     zip.generateAsync({ type: "blob" }).then(function (content) {
         const link = document.createElement('a');
         link.href = URL.createObjectURL(content);
-        link.download = "favicons-weblocalstudio.zip";
+        link.download = "favicons-webrealiza.zip";
         link.click();
     });
 }
